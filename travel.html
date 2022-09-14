@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head></head>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+<style media="screen">
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    background-color: #2d545e;
+  }
+  /* What it does: Stops email clients resizing small text. */
+  * {
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+  }
+
+  /* What it does: Centers email on Android 4.4 */
+  div[style*="margin: 16px 0"] {
+      margin: 0 !important;
+  }
+
+  /* What it does: Stops Outlook from adding extra spacing to tables. */
+  table,
+  td {
+      mso-table-lspace: 0pt !important;
+      mso-table-rspace: 0pt !important;
+  }
+
+  /* What it does: Fixes webkit padding issue. */
+  table {
+      border-spacing: 0 !important;
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
+      margin: 0 auto !important;
+  }
+
+  /* What it does: Uses a better rendering method when resizing images in IE. */
+  img {
+      -ms-interpolation-mode:bicubic;
+  }
+
+  /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+  a {
+      text-decoration: none;
+  }
+
+  /* What it does: A work-around for email clients meddling in triggered links. */
+  *[x-apple-data-detectors],  /* iOS */
+  .unstyle-auto-detected-links *,
+  .aBn {
+      border-bottom: 0 !important;
+      cursor: default !important;
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+  }
+
+  /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+  .a6S {
+      display: none !important;
+      opacity: 0.01 !important;
+  }
+
+  /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+  .im {
+      color: inherit !important;
+  }
+
+  /* If the above doesn't work, add a .g-img class to any image in question. */
+  img.g-img + div {
+      display: none !important;
+  }
+
+  /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+  /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+  /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+  @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+      u ~ div .email-container {
+          min-width: 320px !important;
+      }
+  }
+  /* iPhone 6, 6S, 7, 8, and X */
+  @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+      u ~ div .email-container {
+          min-width: 375px !important;
+      }
+  }
+  /* iPhone 6+, 7+, and 8+ */
+  @media only screen and (min-device-width: 414px) {
+      u ~ div .email-container {
+          min-width: 414px !important;
+      }
+  }
+
+      </style>
+
+<style media="screen">
+
+  .bg-tan {
+    background-color: #e1b382;
+  }
+  .bg-snd-tan {
+  background-color: #c89666;
+  }
+
+  .email-section{
+  	padding:2.5em;
+  }
+
+  /*BUTTON*/
+  .btn{
+  	padding: 5px 20px;
+  	display: inline-block;
+  }
+  .btn.btn-primary{
+  	border-radius: 7px;
+  	background: #2E4DA7;
+  	color: #ffffff;
+  }
+  .btn.btn-white{
+  	border-radius: 5px;
+  	background: #ffffff;
+  	color: #000000;
+  }
+  .btn.btn-white-outline{
+  	border-radius: 5px;
+  	background: transparent;
+  	border: 1px solid #fff;
+  	color: #fff;
+  }
+  .btn.btn-black{
+  	border-radius: 0px;
+  	background: #000;
+  	color: #fff;
+  }
+  .btn.btn-black-outline{
+  	border-radius: 0px;
+  	background: transparent;
+  	border: 2px solid #000;
+  	color: #000;
+  	font-weight: 700;
+  }
+  .btn.btn-custom{
+  	text-transform: uppercase;
+  	font-weight: 600;
+  	font-size: 12px;
+  }
+
+  h1,h2,h3,h4,h5,h6{
+  	font-family: 'Playfair Display', sans-serif;
+  	color: #000000;
+  	margin-top: 0;
+  	font-weight: 400;
+  }
+
+  body{
+  	font-family: 'Playfair Display', sans-serif;
+  	font-weight: 400;
+  	font-size: 15px;
+  	line-height: 1.8;
+  	color: rgba(0,0,0,.7);
+  }
+
+  a{
+  	color: #74b49b;
+  }
+
+  p{
+  	margin-top: 0;
+  }
+
+  table{
+  }
+  /*LOGO*/
+
+  .logo h1{
+  	margin: 0;
+  }
+  .logo h1 a{
+  	color: #000000;
+  	font-size: 20px;
+  	font-weight: 700;
+  	font-family: 'Playfair Display', sans-serif;
+  }
+
+  /*HERO*/
+  .hero{
+  	position: relative;
+  	z-index: 0;
+  }
+  .hero .overlay{
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	right: 0;
+  	bottom: 0;
+  	content: '';
+  	width: 100%;
+  	background: #000000;
+  	z-index: -1;
+  	opacity: .2;
+  }
+  .hero .text{
+  	color: rgba(255,255,255,.9);
+  	max-width: 50%;
+  	margin: 0 auto 0;
+  }
+
+  /*SERVICES*/
+  .services{
+  }
+  .text-services{
+  	padding: 10px 10px 0;
+  	text-align: center;
+  }
+  .text-services h3{
+  	font-size: 18px;
+  	font-weight: 400;
+  }
+
+  .services-list{
+  	margin: 0 0 20px 0;
+  	width: 100%;
+  }
+
+  .services-list img{
+  	float: left;
+  }
+  .services-list h3{
+  	margin-top: 0;
+  	margin-bottom: 0;
+  }
+  .services-list p{
+  	margin: 0;
+  }
+
+  /*MINISTRY*/
+  .text-ministry{
+  	padding: 10px 0;
+  	text-align: center;
+  	border-top: none;
+  }
+  .text-ministry h3{
+  	font-size: 18px;
+  	font-weight: 400;
+  	margin-bottom: 5px;
+  }
+  .text-ministry h3 a{
+  	color: #000;
+  }
+  /*CHARITY*/
+  .text-charity h2{
+  	font-size: 22px;
+  	margin-bottom: 5px;
+  }
+
+
+  /*COUNTER*/
+  .counter{
+  	width: 100%;
+  	position: relative;
+  	z-index: 0;
+  }
+  .counter .overlay{
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	right: 0;
+  	bottom: 0;
+  	content: '';
+  	width: 100%;
+  	background: #000000;
+  	z-index: -1;
+  	opacity: .3;
+  }
+  .counter-text{
+  	text-align: center;
+  }
+  .counter-text .num{
+  	display: block;
+  	color: #ffffff;
+  	font-size: 34px;
+  	font-weight: 700;
+  }
+  .counter-text .name{
+  	display: block;
+  	color: rgba(255,255,255,.9);
+  	font-size: 13px;
+  }
+
+
+  /*HEADING SECTION*/
+  .heading-section{
+
+  }
+  .heading-section h2{
+  	color: #000000;
+  	font-size: 28px;
+  	margin-top: 0;
+  	line-height: 1.4;
+  	font-weight: 400;
+  }
+  .heading-section .subheading{
+  	margin-bottom: 20px !important;
+  	display: inline-block;
+  	font-size: 13px;
+  	text-transform: uppercase;
+  	letter-spacing: 2px;
+  	color: rgba(0,0,0,.4);
+  	position: relative;
+  }
+  .heading-section .subheading::after{
+  	position: absolute;
+  	left: 0;
+  	right: 0;
+  	bottom: -10px;
+  	content: '';
+  	width: 100%;
+  	height: 2px;
+  	background: #74b49b;
+  	margin: 0 auto;
+  }
+
+  .heading-section-white{
+  	color: rgba(255,255,255,.8);
+  }
+  .heading-section-white h2{
+  	font-family:
+  	line-height: 1;
+  	padding-bottom: 0;
+  }
+  .heading-section-white h2{
+  	color: #ffffff;
+  }
+  .heading-section-white .subheading{
+  	margin-bottom: 0;
+  	display: inline-block;
+  	font-size: 13px;
+  	text-transform: uppercase;
+  	letter-spacing: 2px;
+  	color: rgba(255,255,255,.4);
+  }
+
+
+  ul.social{
+  	padding: 0;
+  }
+  ul.social li{
+  	display: inline-block;
+  	margin-right: 10px;
+  	/*border: 1px solid #74b49b;*/
+  	padding: 10px;
+  	border-radius: 50%;
+  	background: rgba(0,0,0,.05);
+  }
+
+  /*FOOTER*/
+
+  .footer{
+  	border-top: 1px solid rgba(0,0,0,.05);
+  	color: rgba(0,0,0,.5);
+  }
+  .footer .heading{
+  	color: #000;
+  	font-size: 20px;
+  }
+  .footer ul{
+  	margin: 0;
+  	padding: 0;
+  }
+  .footer ul li{
+  	list-style: none;
+  	margin-bottom: 10px;
+  }
+  .footer ul li a{
+  	color: rgba(0,0,0,1);
+  }
+
+
+  @media screen and (max-width: 500px) {
+
+
+  }
+
+
+      </style>
+
+
+  </head>
+    <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #222222;">
+    	<center style="width: 100%; background-color: #f1f1f1;">
+        <div style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+          &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+        </div>
+        <div style="max-width: 600px; margin: 0 auto;" class="email-container">
+
+        <!-- begin email -->
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0" align="center" style="margin:auto;">
+            <tr>
+              <td valign="top" align="center" class="bg-tan" style="padding:.5em 2.5em 1em 2.5em;">
+                <!-- logo -->
+                <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+                  <tr>
+              			         <td class="logo" style="text-align: center;">
+    			            <h1><a href="https://www.acxiom.com" target="_blank">The Travel Blog</a></h1>
+    			          </td>
+              		</tr>
+              	</table>
+              </td>
+            </tr><!--end tr-->
+
+            <!-- hero image -->
+            <tr>
+              <td valign="top" class="bg-snd-tan" style="padding: 0;">
+                <table role="presentation" width="640" style="width:600px;" cellpadding="0" cellspacing="0" border="0" align="center">
+  <tr>
+  <td align="center" bgcolor="#000000" background="/Users/jnoble/Desktop/Email Designs/Travel/Images/annie-spratt-qyAka7W5uMY-unsplash.jpg" width="600" height="400" valign="top" style="background: url('/Users/jnoble/Desktop/Email Designs/Travel/Images/annie-spratt-qyAka7W5uMY-unsplash.jpg') center / cover no-repeat #000000; max-width:600px;">
+  <!--[if gte mso 9]>
+  <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block; width: 480pt; height: 300pt;" src="https://via.placeholder.com/640x400" />                <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block;position: absolute; width: 480pt; height:300pt;">
+  <v:fill  opacity="0%" color="#000000”  />
+  <v:textbox inset="0,0,0,0">
+  <![endif]-->
+  <div>
+  <div style="font-size: 0;">
+  <table role="presentation" width="600" style="width:600px;" cellpadding="0" cellspacing="0" border="0" align="center">
+  <tr>
+  <td height="400" align="center"></td>
+  </tr>
+  </table>
+  </div>
+  </div>
+  <!--[if gte mso 9]>
+  </v:textbox>
+  </v:fill>
+  </v:rect>
+  </v:image>
+  <![endif]-->
+  </td>
+  </tr><!-- end tr-->
+  </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="height: 10px;" class="bg-tan"></td>
+  </tr>
+  <tr>
+    <td class="bg-tan">
+      <div class="heading-section" style="text-align: center; padding: 0 30px;">
+        <h2>Our Recent Travels</h2>
+        <p>From kayaking the great sudan to backpacking in nigaragua, here are just a few of this month's travel updates we think you will love!</p>
+      </div>
+
+
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td valign="top" width="50%">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="padding-top: 20px; padding-right: 10px;">
+                  <a href="#"><img src="/Users/jnoble/Desktop/Email Designs/Travel/Images/felix-rostig-UmV2wr-Vbq8-unsplash.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a>
+                  <div class="text-ministry" style="text-align: center;">
+                    <h3><a href="#">Nicaragua</a></h3>
+                    <p>A backpacking adventure of a lifetime</p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" width="50%">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="padding-top: 20px; padding-left: 10px;">
+                  <a href="#"><img src="/Users/jnoble/Desktop/Email Designs/Travel/Images/pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a>
+                  <div class="text-ministry" style="text-align: center;">
+                    <h3><a href="#">The Sudan River</a></h3>
+                    <p>You won't believe what we found</p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="height: 10px;" class="bg-snd-tan"></td>
+  </tr>
+  <tr>
+
+    <td class="bg-snd-tan">
+      <div class="heading-section" style="text-align: center; padding: 0 30px;">
+        <h2>Past Adventures</h2>
+        <p>Here are just a few of our past favorite vacations!</p>
+      </div>
+
+
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td valign="top" width="50%">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="padding-top: 20px; padding-right: 10px;">
+                  <a href="#"><img src="https://images.unsplash.com/photo-1581718316153-4e69d8c9a0c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a>
+                  <div class="text-ministry" style="text-align: center;">
+                    <h3><a href="#">Maine</a></h3>
+                    <p>Check out this unknown secret about Maine</p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td valign="top" width="50%">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="padding-top: 20px; padding-left: 10px;">
+                  <a href="#"><img src="https://images.unsplash.com/photo-1520986606214-8b456906c813?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a>
+                  <div class="text-ministry" style="text-align: center;">
+                    <h3><a href="#">London</a></h3>
+                    <p>Would go back in a heartbeat</p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!-- end: tr -->
+  <tr>
+    <td valign="middle" class="counter" style="color: white; background-image: url('https://images.unsplash.com/photo-1588421357574-87938a86fa28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'); background-size: cover; background-position: center center; padding: 4em 0;">
+      <div class="overlay"></div>
+      <table>
+        <tr>
+          <td valign="middle" width="33.333%">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td class="counter-text">
+                  <span class="num">40</span>
+                  <span class="name">New Cities</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td valign="middle" width="33.333%">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td class="counter-text">
+                  <span class="num">100000</span>
+                  <span class="name">Miles Traveled</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td valign="middle" width="33.333%">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td class="counter-text">
+                  <span class="num">50</span>
+                  <span class="name">Countries Visited</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- end tr -->
+  <!-- end: tr -->
+  <tr>
+    <td class="bg-tan" style="width: 100%;">
+      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td valign="middle" width="50%">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td>
+                  <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;">
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td valign="middle" width="50%">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td class="text-charity" style="text-align: left; padding-left:25px;">
+                    <h2>Join Us!</h2>
+                    <p>Enter now to win a <strong>FREE trip</strong> with us.</p>
+                    <p><a href="#" class="btn btn-primary">Enter Now</a></p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr><!-- end: tr -->
+  <!-- 1 Column Text + Button : END -->
+  </table>
+  <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
+  <tr>
+    <td class="bg_white" style="text-align: center; padding-top: 20px;">
+      <p>No longer want to receive these email? You can <a href="#" style="color: rgba(0,0,0,.8);">Unsubscribe here</a></p>
+    </td>
+  </tr>
+  </table>
+
+
+<!--end email -->
+          </table>
+        </center>
+        </div>
+  </body>
+</html>
